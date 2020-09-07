@@ -156,12 +156,6 @@ public class VendingMachineImpl implements IVendingMachine {
 		}
 	}
 
-	public void printStats() {
-		System.out.println("Total Sales : " + totalSales);
-		System.out.println("Current Item Stock : " + itemInventory);
-		System.out.println("Current Cash Stock : " + cashInventory);
-	}
-
 	private boolean hasSufficientChange() {
 		return hasSufficientChangeForAmount(cartBalance - cartProduct.getPrice());
 	}

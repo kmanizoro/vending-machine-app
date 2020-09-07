@@ -3,11 +3,8 @@
  */
 package com.app.vm;
 
-import java.util.List;
-
 import com.app.vm.model.Coin;
 import com.app.vm.model.Product;
-import com.app.vm.service.CartBucket;
 import com.app.vm.service.IVendingMachine;
 
 /**
@@ -22,8 +19,6 @@ public class VendingMachineMain {
 		vMachine.chooseProduct(Product.SWEET_BREAD);
 		vMachine.insertCoin(Coin.QUARTER);
 		vMachine.insertCoin(Coin.QUARTER);
-		CartBucket<Product, List<Coin>> bucket = vMachine.collectProducts();
-		System.out.println(bucket.getProduct().name());
-		System.out.println(bucket.getCoin().stream().mapToInt(obj->obj.getValue()).sum());
+		vMachine.collectProducts();
 	}
 }

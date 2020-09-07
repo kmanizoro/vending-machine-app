@@ -13,6 +13,7 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.app.vm.exception.AmountNotEnoughException;
 import com.app.vm.exception.NotSufficientChangeException;
 import com.app.vm.exception.ProductSoldOutException;
 import com.app.vm.model.Coin;
@@ -111,6 +112,14 @@ public class VendingMachineTest {
 		IVendingMachine vmachine = VendingMachineFactory.getVendingMachine();
 		vmachine.reset();
 		vmachine.chooseProduct(Product.CHOCOLATE);
+	}
+	
+	@Test(expected = AmountNotEnoughException.class)
+	public void testAmountNotEnough() {
+		long price = vendingMachine.chooseProduct(Product.SWEET_BREAD);
+		assertEquals(Product.SWEET_BREAD.getPrice(), price);
+		vendingMachine.insertCoin(Coin.DIME);
+		vendingMachine.collectProducts();
 	}
 
 	private long getTotal(List<Coin> change) {
